@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/day1"
+    android:orientation="vertical"
+    tools:context=".RegistoActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_weight="0.3"
+        android:fontFamily="@font/madame"
+        android:gravity="center"
+        android:text="@string/registo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+        android:textColor="#fff" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/txt_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:drawableEnd="@drawable/ic_person_white_24dp"
+        android:fontFamily="@font/gotham"
+        android:hint="@string/nome"
+        android:inputType="textEmailAddress"
+        android:textColor="#fff"
+        android:theme="@style/myEditTextStyle" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/txt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:drawableEnd="@drawable/ic_email_white_24dp"
+        android:fontFamily="@font/gotham"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textColor="#fff"
+        android:theme="@style/myEditTextStyle" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/txt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="60dp"
+        android:drawableEnd="@drawable/ic_lock_white_24dp"
+        android:fontFamily="@font/gotham"
+        android:hint="@string/palavra_passe"
+        android:inputType="textPassword"
+        android:textColor="#fff"
+        android:theme="@style/myEditTextStyle" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="1dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/bg_button_white"
+            android:fontFamily="@font/gotham"
+            android:text="@string/registar"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_backlogin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.1"
+        android:fontFamily="@font/gotham"
+        android:gravity="center_horizontal"
+        android:text="@string/j_tem_uma_conta_iniciar_sessao"
+        android:textColor="#fff" />
+
+
+</LinearLayout>

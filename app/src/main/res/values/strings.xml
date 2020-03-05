@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="registar">Registar</string>
+    <string name="entrar">Entrar</string>
+    <string name="bem_vindo">Bem-Vindo</string>
+    <string name="email">Email</string>
+    <string name="palavra_passe">Palavra-passe</string>
+    <string name="esqueceu_se_da_palavra_passe">Esqueceu-se da palavra-passe?</string>
+    <string name="registo">Registo</string>
+    <string name="nome">Nome</string>
+    <string name="j_tem_uma_conta_iniciar_sessao">Já tem uma conta? Iniciar sessão</string>
+    <string name="inicio">Inicio</string>
+    <string name="definicoes">Definições</string>
+    <string name="sair">Sair</string>
+    <string name="abrir">Abrir</string>
+    <string name="fechar">Fechar</string>
+    <string name="paginainicial">Página Inicial</string>
+    <string name="temp">Temperatura:</string>
+    <string name="luz">Luz:</string>
+    <string name="tpa">Tpa:</string>
+    <string name="ph">pH:</string>
+    <string name="definicoes_luz">Definições de Luz</string>
+    <string name="BioHorario">Bio Horário:</string>
+    <string name="nivelI">Nível I:</string>
+    <string name="nivelII">Nível II:</string>
+    <string name="nivelIII">Nível III:</string>
+    <string name="ate">até</string>
+    <string name="fim">Fim</string>
+</resources>
