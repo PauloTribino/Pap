@@ -45,6 +45,7 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(definicoes_luzActivity.this, mDrawerLayout, R.string.abrir, R.string.sair);
