@@ -37,8 +37,6 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private ViewHolder mViewHolder = new ViewHolder();
-    private String user;
-    private String name;
     private FirebaseAuth mAuth;
     private DatabaseReference myRef;
     private FirebaseDatabase mFirebaseDatabase;
