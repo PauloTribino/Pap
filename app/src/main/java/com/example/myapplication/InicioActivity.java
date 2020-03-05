@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,10 +54,7 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent i = getIntent();
 
-        user = i.getExtras().getString("user");
-        name = i.getExtras().getString("name");
         aquariosList = new ArrayList<>();
         utilizadorList = new ArrayList<>();
 
@@ -81,8 +80,8 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         FirebaseUser user = mAuth.getCurrentUser();
         useremail = user.getEmail();
 
-            GetValuesUser();
-            GetValuesAquario();
+        GetValuesUser();
+        GetValuesAquario();
 
     }
 
@@ -91,8 +90,8 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         myRef = FirebaseDatabase.getInstance().getReference("Aquarios");
         //myRef.addListenerForSingleValueEvent();
 
-      useremail = useremail.replace("@","");
-      useremail = useremail.replace(".","");
+        useremail = useremail.replace("@", "");
+        useremail = useremail.replace(".", "");
 
         //SELECT * FROM WHERE email= currentUser
         Query query = FirebaseDatabase.getInstance().getReference("Aquarios")
@@ -102,7 +101,7 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
 
     }
 
-    private void GetValuesUser(){
+    private void GetValuesUser() {
         //Select * from Utilizadores
         myRef = FirebaseDatabase.getInstance().getReference("Utilizadores");
 
@@ -123,13 +122,15 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                     Aquarios aquarios = snapshot.getValue(Aquarios.class);
                     aquariosList.add(aquarios);
 
-                   mViewHolder.phvalue.setText(String.valueOf(aquarios.getPh()));
-                   mViewHolder.tempvalue.setText(String.valueOf(aquarios.getTemp())+"ºC");
-                   mViewHolder.luzvalue.setText(String.valueOf(3));
+                    mViewHolder.phvalue.setText(String.valueOf(aquarios.getPh()));
+                    mViewHolder.tempvalue.setText(String.valueOf(aquarios.getTemp()) + "ºC");
+                    mViewHolder.luzvalue.setText(String.valueOf(3));
                     mViewHolder.tpavalue.setText(String.valueOf(10));
                 }
             }
         }
+
+
 
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -148,10 +149,11 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Utilizador utilizador = snapshot.getValue(Utilizador.class);
                     utilizadorList.add(utilizador);
-try {
-    mViewHolder.nav_nome.setText(String.valueOf(utilizador.getNome()));
-    mViewHolder.nav_email.setText(String.valueOf(utilizador.getEmail()));
-} catch(Exception ec){}
+                    try {
+                        mViewHolder.nav_nome.setText(String.valueOf(utilizador.getNome()));
+                        mViewHolder.nav_email.setText(String.valueOf(utilizador.getEmail()));
+                    } catch (Exception ec) {
+                    }
                 }
             }
         }
@@ -161,7 +163,6 @@ try {
 
         }
     };
-
 
 
     @Override
@@ -185,14 +186,14 @@ try {
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-
-        if (id == R.id.home) {
-            Intent i = new Intent(InicioActivity.this, InicioActivity.class);
-            startActivity(i);
-        } else if (id == R.id.settings) {
-            Intent i = new Intent(InicioActivity.this, DefinicoesActivity.class);
-            startActivity(i);
+            if(id == R.id.home) {
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+            }
+        else if (id == R.id.settings) {
+            Intent i = new Intent(InicioActivity.this, definicoes_luzActivity.class);
+            startActivityForResult(i, 1);
         } else if (id == R.id.sair) {
+            setResult(0);
             Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -200,15 +201,22 @@ try {
     }
 
 
-public class ViewHolder {
+    private class ViewHolder {
 
-    TextView phvalue;
-    TextView tempvalue;
-    TextView luzvalue;
-    TextView tpavalue;
-    TextView nav_nome;
-    TextView nav_email;
+        TextView phvalue;
+        TextView tempvalue;
+        TextView luzvalue;
+        TextView tpavalue;
+        TextView nav_nome;
+        TextView nav_email;
 
-}
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 0)
+            finish();
+    }
 }
