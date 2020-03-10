@@ -8,8 +8,14 @@
 
     </item>
     <item
-        android:id="@+id/settings"
-        android:title="@string/definicoes"
+        android:id="@+id/settings_light"
+        android:title="@string/definicoes_de_luz"
+        android:icon="@drawable/ic_settings_white_24dp">
+
+    </item>
+    <item
+        android:id="@+id/settings_tpa"
+        android:title="@string/definicoes_de_tpa"
         android:icon="@drawable/ic_settings_white_24dp">
 
     </item>

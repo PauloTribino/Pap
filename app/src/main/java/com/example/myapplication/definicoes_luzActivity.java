@@ -11,6 +11,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class definicoes_luzActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,15 +40,24 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
     private List<Aquarios> aquariosList;
     private List<Utilizador> utilizadorList;
     private String useremail = "";
+    private Integer lamp1=0;
+    private Integer lamp2=0;
+    private Integer lamp3=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_definicoes_luz);
+        utilizadorList = new ArrayList<>();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //
+        mViewHolder.nav_nome = findViewById(R.id.nav_nome);
+        mViewHolder.nav_email = findViewById(R.id.nav_email);
+        mViewHolder.level1 = findViewById(R.id.level1);
+        mViewHolder.level2 = findViewById(R.id.level2);
+        mViewHolder.level3 = findViewById(R.id.level3);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(definicoes_luzActivity.this, mDrawerLayout, R.string.abrir, R.string.sair);
@@ -62,7 +74,90 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         useremail = user.getEmail();
 
         GetValuesUser();
+
+        mViewHolder.level1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lamp1 == 0) {
+                    mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
+                    mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1=1;
+                    lamp2=0;
+                    lamp3=0;
+                }
+                else if(lamp1==1 && lamp2 == 0){
+                    mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1 = 0;
+                    lamp2 = 0;
+                    lamp3 = 0;
+                }
+                else if(lamp1==1 && lamp2==1){
+                    mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
+                    mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1 = 1;
+                    lamp2 = 0;
+                    lamp3 = 0;
+                }
+            }
+        });
+
+
+        mViewHolder.level2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lamp2==0) {
+                    mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
+                    mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1=1;
+                    lamp2=1;
+                    lamp3=0;
+                }
+                else if(lamp2==1 && lamp3==0){
+                    mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1=1;
+                    lamp2=0;
+                    lamp3=0;
+
+                }
+                else if(lamp2==1 && lamp3==1){
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1=1;
+                    lamp2=1;
+                    lamp3=0;
+                }
+            }
+        });
+
+        mViewHolder.level3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lamp3==0) {
+                    mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
+                    mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
+                    lamp1=1;
+                    lamp2=1;
+                    lamp3=1;
+                }
+                else if(lamp3==1){
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1=1;
+                    lamp2=1;
+                    lamp3=0;
+
+                }
+            }
+        });
+
     }
+
+
 
     private void GetValuesUser() {
         //Select * from Utilizadores
@@ -80,21 +175,22 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
     ValueEventListener valueEventListenerUtilizador = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            utilizadorList.clear();
             mViewHolder.nav_nome = findViewById(R.id.nav_nome);
             mViewHolder.nav_email = findViewById(R.id.nav_email);
+            utilizadorList.clear();
 
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Utilizador utilizador = snapshot.getValue(Utilizador.class);
                     utilizadorList.add(utilizador);
-                    try {
+                    /*try {*/
                         mViewHolder.nav_nome.setText(String.valueOf(utilizador.getNome()));
                         mViewHolder.nav_email.setText(String.valueOf(utilizador.getEmail()));
-                    } catch (Exception ec) {
-                    }
+                    /*} catch (Exception ec) {
+                    }*/
                 }
             }
+
         }
 
         @Override
@@ -103,17 +199,16 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         }
     };
 
-        @Override
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
 
         if (id == R.id.home) {
             Intent i = new Intent(definicoes_luzActivity.this, InicioActivity.class);
             startActivityForResult(i, 1);
-        }else if(id == R.id.settings) {
+        } else if (id == R.id.settings_light) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else if (id == R.id.sair) {
+        } else if (id == R.id.sair) {
             setResult(0);
             Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
             finish();
@@ -144,6 +239,9 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
 
         TextView nav_nome;
         TextView nav_email;
+       ImageView level1;
+       ImageView level2;
+       ImageView level3;
 
     }
 

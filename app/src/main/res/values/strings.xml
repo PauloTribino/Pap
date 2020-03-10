@@ -26,4 +26,7 @@
     <string name="nivelIII">Nível III:</string>
     <string name="ate">até</string>
     <string name="fim">Fim</string>
+    <string name="definicoes_de_luz">Definições de Luz</string>
+    <string name="definicoes_de_tpa">Definições de TPA</string>
+    <string name="enviar">Enviar</string>
 </resources>

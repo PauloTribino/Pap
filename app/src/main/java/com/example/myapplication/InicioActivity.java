@@ -187,7 +187,7 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
             if(id == R.id.home) {
                 mDrawerLayout.closeDrawer(GravityCompat.START);
             }
-        else if (id == R.id.settings) {
+        else if (id == R.id.settings_light) {
             Intent i = new Intent(InicioActivity.this, definicoes_luzActivity.class);
             startActivityForResult(i, 1);
         } else if (id == R.id.sair) {
@@ -197,6 +197,9 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         }
         return false;
     }
+
+
+
 
 
     private class ViewHolder {

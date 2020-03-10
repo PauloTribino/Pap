@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private String userID;
     private DatabaseReference myRef;
     private FirebaseDatabase mFirebaseDatabase;
+    boolean flag = true;
 
 
     @Override
@@ -56,39 +57,43 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+
+
                 String email = mViewHolder.et_email.getText().toString();
                 String password = mViewHolder.et_password.getText().toString();
 
                 if (!email.equals("") && !password.equals("")) {
 
-                    mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
 
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
 
                                 FirebaseUser user = mAuth.getCurrentUser();
 
-
-                                Toast.makeText(MainActivity.this, "Bem-Vindo!", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(MainActivity.this, InicioActivity.class);
-
-
-
-                                i.putExtra("user",user.getEmail());
-                                i.putExtra("name",user);
-
-                                startActivity(i);
+                                if (flag) {
+                                    flag = false;
+                                    Toast.makeText(MainActivity.this, "Bem-Vindo!", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(MainActivity.this, InicioActivity.class);
 
 
-                            }
-                            else{
+                                    i.putExtra("user", user.getEmail());
+                                    i.putExtra("name", user);
+
+                                    startActivity(i);
+                                }
+
+                            } else {
+                                flag = true;
                                 Toast.makeText(MainActivity.this, "Dados Inválidos!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 } else {
+                    flag = true;
+
                     Toast.makeText(MainActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -106,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
- private void showData(DataSnapshot dataSnapshot){
-     ArrayList<String> array  = new ArrayList<>();
-        for(DataSnapshot ds : dataSnapshot.getChildren()){
+    private void showData(DataSnapshot dataSnapshot) {
+        ArrayList<String> array = new ArrayList<>();
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
             Utilizador utilizador = new Utilizador();
             utilizador.setEmail(ds.child(userID).getValue(Utilizador.class).getEmail());
             utilizador.setNome(ds.child(userID).getValue(Utilizador.class).getNome());
@@ -120,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             array.add(utilizador.getPassword());
         }
 
- }
+    }
 
     public static class ViewHolder {
 
@@ -129,5 +134,11 @@ public class MainActivity extends AppCompatActivity {
         Button bt_login;
         Button bt_register;
 
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        flag = true;
     }
 }
