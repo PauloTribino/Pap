@@ -7,11 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
+import java.util.Calendar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class definicoes_luzActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -58,6 +60,7 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         mViewHolder.level1 = findViewById(R.id.level1);
         mViewHolder.level2 = findViewById(R.id.level2);
         mViewHolder.level3 = findViewById(R.id.level3);
+        mViewHolder.btnautomatico = findViewById(R.id.btn_automatico);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(definicoes_luzActivity.this, mDrawerLayout, R.string.abrir, R.string.sair);
@@ -74,6 +77,22 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         useremail = user.getEmail();
 
         GetValuesUser();
+
+        mViewHolder.btnautomatico.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                lamp1 = 0;
+                lamp2 = 0;
+                lamp3 = 0;
+                mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+
+                //Date tempct = CurrentTime();
+
+            }
+        });
 
         mViewHolder.level1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +177,6 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
     }
 
 
-
     private void GetValuesUser() {
         //Select * from Utilizadores
         myRef = FirebaseDatabase.getInstance().getReference("Utilizadores");
@@ -237,11 +255,12 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
     private class ViewHolder {
 
 
-        TextView nav_nome;
-        TextView nav_email;
+       TextView nav_nome;
+       TextView nav_email;
        ImageView level1;
        ImageView level2;
        ImageView level3;
+       Button btnautomatico;
 
     }
 

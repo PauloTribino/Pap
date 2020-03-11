@@ -27,8 +27,8 @@
         <ImageView
             android:id="@+id/level1"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:src="@drawable/ic_wb_incandescent_white_24dp"
              />
@@ -36,16 +36,16 @@
         <ImageView
             android:id="@+id/level2"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:src="@drawable/ic_wb_incandescent_white_24dp" />
 
         <ImageView
             android:id="@+id/level3"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:src="@drawable/ic_wb_incandescent_white_24dp" />
 
@@ -53,238 +53,22 @@
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
             android:background="@android:color/darker_gray" />
 
-        <ImageView
-            android:id="@+id/automatico"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="15dp"
-            android:gravity="center_horizontal"
-            android:src="@drawable/ic_date_range_white_24dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/horario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/gotham"
-                android:gravity="center_horizontal"
-                android:text="@string/BioHorario"
-                android:textColor="#fff"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/nivel1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/gotham"
-                android:gravity="end"
-                android:text="@string/nivelI"
-                android:textColor="#fff"
-                android:textSize="20dp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/txt_horainicialI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:drawableEnd="@drawable/ic_wb_incandescent_white_24dp"
-                    android:fontFamily="@font/gotham"
-                    android:hint="@string/inicio"
-                    android:inputType="time"
-                    android:textColor="#fff"
-                    android:theme="@style/myEditTextStyle" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gotham"
-                    android:text="@string/ate"
-                    android:textColor="#fff"
-                    android:textSize="20dp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/txt_horafinalI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:drawableEnd="@drawable/ic_wb_incandescent_white_24dp"
-                    android:fontFamily="@font/gotham"
-                    android:hint="@string/fim"
-                    android:inputType="time"
-                    android:textColor="#fff"
-                    android:theme="@style/myEditTextStyle" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/nivel2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/gotham"
-                android:gravity="end"
-                android:text="@string/nivelII"
-                android:textColor="#fff"
-                android:textSize="20dp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/txt_horainicialII"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:drawableEnd="@drawable/ic_wb_incandescent_white_24dp"
-                    android:fontFamily="@font/gotham"
-                    android:hint="@string/inicio"
-                    android:inputType="time"
-                    android:textColor="#fff"
-                    android:theme="@style/myEditTextStyle" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gotham"
-                    android:text="@string/ate"
-                    android:textColor="#fff"
-                    android:textSize="20dp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/txt_horafinalII"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:drawableEnd="@drawable/ic_wb_incandescent_white_24dp"
-                    android:fontFamily="@font/gotham"
-                    android:hint="@string/fim"
-                    android:inputType="time"
-                    android:textColor="#fff"
-                    android:theme="@style/myEditTextStyle" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/nivel3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-
-                android:layout_weight="1"
-                android:fontFamily="@font/gotham"
-                android:gravity="end"
-                android:text="@string/nivelIII"
-                android:textColor="#fff"
-                android:textSize="20dp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/txt_horainicialIII"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:drawableEnd="@drawable/ic_wb_incandescent_white_24dp"
-                    android:fontFamily="@font/gotham"
-                    android:hint="@string/inicio"
-                    android:inputType="time"
-                    android:textColor="#fff"
-                    android:theme="@style/myEditTextStyle" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gotham"
-                    android:text="@string/ate"
-                    android:textColor="#fff"
-                    android:textSize="20dp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/txt_horafinalIII"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:drawableEnd="@drawable/ic_wb_incandescent_white_24dp"
-                    android:fontFamily="@font/gotham"
-                    android:hint="@string/fim"
-                    android:inputType="time"
-                    android:textColor="#fff"
-                    android:theme="@style/myEditTextStyle" />
-
-            </LinearLayout>
-        </LinearLayout>
 
         <Button
-            android:id="@+id/btn_enviar"
+            android:id="@+id/btn_automatico"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="100dp"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.6"
             android:background="@drawable/bg_button_white"
             android:fontFamily="@font/gotham"
-            android:text="@string/enviar"
+            android:text="@string/automatico"
             android:textColor="#fff"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"/>
