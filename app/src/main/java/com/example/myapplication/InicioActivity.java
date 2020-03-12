@@ -120,8 +120,8 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                     Aquarios aquarios = snapshot.getValue(Aquarios.class);
                     aquariosList.add(aquarios);
 
-                    mViewHolder.phvalue.setText(String.valueOf(aquarios.getPh()));
-                    mViewHolder.tempvalue.setText(String.valueOf(aquarios.getTemp()) + "ºC");
+                    mViewHolder.phvalue.setText(String.valueOf((Math.round(aquarios.getPh())*10) / 10));
+                    mViewHolder.tempvalue.setText(String.valueOf((Math.round(aquarios.getTemp())*10)/10) + "ºC");
                     mViewHolder.luzvalue.setText(String.valueOf(3));
                     mViewHolder.tpavalue.setText(String.valueOf(10));
                 }

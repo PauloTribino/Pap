@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import java.util.Calendar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,7 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,9 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class definicoes_luzActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -89,7 +85,7 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                 mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
                 mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
 
-                //Date tempct = CurrentTime();
+               // myRef.child(useremail)
 
             }
         });
