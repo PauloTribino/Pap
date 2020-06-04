@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,13 +40,14 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
     private Integer lamp1=0;
     private Integer lamp2=0;
     private Integer lamp3=0;
+    private String email = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_definicoes_luz);
         utilizadorList = new ArrayList<>();
-
+        aquariosList = new ArrayList<>();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //
@@ -73,7 +71,9 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         FirebaseUser user = mAuth.getCurrentUser();
         useremail = user.getEmail();
 
+
         GetValuesUser();
+
 
         mViewHolder.level1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +85,7 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     lamp1=1;
                     lamp2=0;
                     lamp3=0;
+                    RefreshLamps();
                 }
                 else if(lamp1==1 && lamp2 == 0){
                     mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
@@ -93,6 +94,7 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     lamp1 = 0;
                     lamp2 = 0;
                     lamp3 = 0;
+                    RefreshLamps();
                 }
                 else if(lamp1==1 && lamp2==1){
                     mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
@@ -101,6 +103,7 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     lamp1 = 1;
                     lamp2 = 0;
                     lamp3 = 0;
+                    RefreshLamps();
                 }
             }
         });
@@ -116,6 +119,7 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     lamp1=1;
                     lamp2=1;
                     lamp3=0;
+                    RefreshLamps();
                 }
                 else if(lamp2==1 && lamp3==0){
                     mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
@@ -123,13 +127,14 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     lamp1=1;
                     lamp2=0;
                     lamp3=0;
-
+                    RefreshLamps();
                 }
                 else if(lamp2==1 && lamp3==1){
                     mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
                     lamp1=1;
                     lamp2=1;
                     lamp3=0;
+                    RefreshLamps();
                 }
             }
         });
@@ -144,13 +149,14 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     lamp1=1;
                     lamp2=1;
                     lamp3=1;
+                    RefreshLamps();
                 }
                 else if(lamp3==1){
                     mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
                     lamp1=1;
                     lamp2=1;
                     lamp3=0;
-
+                    RefreshLamps();
                 }
             }
         });
@@ -171,6 +177,27 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
 
     }
 
+    private void RefreshLamps(){
+
+        Integer temp = 0;
+
+        for(int i=0; i < aquariosList.size();i++ ){
+            if(aquariosList.get(i).getEmail() == email)
+                temp = i;
+        }
+
+        if(lamp1 == 1){
+            aquariosList.get(temp).setLamps(1);
+        }
+        else if(lamp2==1){
+            aquariosList.get(temp).setLamps(2);
+        }
+        else if(lamp3==1){
+            aquariosList.get(temp).setLamps(3);
+        }
+
+    }
+
 
     ValueEventListener valueEventListenerUtilizador = new ValueEventListener() {
         @Override
@@ -188,6 +215,32 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                         mViewHolder.nav_email.setText(String.valueOf(utilizador.getEmail()));
                     /*} catch (Exception ec) {
                     }*/
+
+                    email = utilizador.getEmail();
+
+                    Aquarios aquarios = snapshot.getValue(Aquarios.class);
+                    aquariosList.add(aquarios);
+
+                    if(aquarios.getLamps() == 1){
+                        lamp1 = 1;
+                        lamp2 = 0;
+                        lamp3 = 0;
+                    }
+                    else if(aquarios.getLamps() == 2){
+                        lamp1 = 1;
+                        lamp2 = 1;
+                        lamp3 = 0;
+                    }
+                    else if(aquarios.getLamps() == 3){
+                        lamp1 = 1;
+                        lamp2 = 1;
+                        lamp3 = 1;
+                    }
+                    else{
+                        lamp1 = 0;
+                        lamp2 = 0;
+                        lamp3 = 0;
+                    }
                 }
             }
 

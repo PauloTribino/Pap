@@ -5,18 +5,21 @@ public class Aquarios {
     private String email;
     private Float ph;
     private Float temp;
+    private Integer lamps;
 
 
-    public Aquarios(String email, Float ph, Float temp) {
+    public Aquarios(String email, Float ph, Float temp, Integer lamps) {
         this.email = email;
         this.ph = ph;
         this.temp = temp;
+        this.lamps = lamps;
     }
 
     public Aquarios(){
         email = "";
         ph = 0.0f;
         temp = 0.0f;
+        lamps = 0;
     }
 
     public String getEmail() {
@@ -42,5 +45,11 @@ public class Aquarios {
     public void setTemp(float temp) {
         this.temp = temp;
     }
+
+    public Integer getLamps() { return lamps; }
+
+    public void setLamps(Integer lamps){ this.lamps = lamps; }
+
+
 
 }
