@@ -38,9 +38,16 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
     private List<Aquarios> aquariosList;
     private List<Utilizador> utilizadorList;
     private String useremail = "";
+<<<<<<< Updated upstream
     private Integer lamp1=0;
     private Integer lamp2=0;
     private Integer lamp3=0;
+=======
+    private Integer lamp1 = 0;
+    private Integer lamp2 = 0;
+    private Integer lamp3 = 0;
+    private Integer userID = 0;
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +80,29 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         useremail = user.getEmail();
 
         GetValuesUser();
+        GetUserID();
+        GetValuesAquario();
+        Lamps();
+    }
 
+    private void GetUserID(){
+
+        for (int i = 0; i < aquariosList.size(); i++) {
+            if (aquariosList.get(i).getEmail() == useremail)
+                userID = i;
+        }
+
+    }
+
+    private int GetValues(){
+        Integer temp = 0;
+
+        for (int i = 0; i < aquariosList.size(); i++) {
+            if (aquariosList.get(i).getEmail() == useremail)
+                temp = i;
+        }
+
+<<<<<<< Updated upstream
         mViewHolder.btnautomatico.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -89,27 +118,45 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
 
             }
         });
+=======
+        return temp;
+    }
+>>>>>>> Stashed changes
 
+    private void Lamps() {
         mViewHolder.level1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(lamp1 == 0) {
+                if (lamp1 == 0 || aquariosList.get(userID).getLamps() == 0) {
                     mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
                     mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
                     mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+<<<<<<< Updated upstream
                     lamp1=1;
                     lamp2=0;
                     lamp3=0;
                 }
                 else if(lamp1==1 && lamp2 == 0){
+=======
+                    lamp1 = 1;
+                    lamp2 = 0;
+                    lamp3 = 0;
+                    RefreshLamps();
+                } else if (lamp1 == 1 && lamp2 == 0 || aquariosList.get(userID).getLamps() == 0) {
+>>>>>>> Stashed changes
                     mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
                     mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
                     mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
                     lamp1 = 0;
                     lamp2 = 0;
                     lamp3 = 0;
+<<<<<<< Updated upstream
                 }
                 else if(lamp1==1 && lamp2==1){
+=======
+                    RefreshLamps();
+                } else if (lamp1 == 1 && lamp2 == 1 || aquariosList.get(userID).getLamps() == 1) {
+>>>>>>> Stashed changes
                     mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
                     mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
                     mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
@@ -124,10 +171,11 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         mViewHolder.level2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(lamp2==0) {
+                if (lamp2 == 0 || aquariosList.get(userID).getLamps() == 2) {
                     mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
                     mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
                     mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+<<<<<<< Updated upstream
                     lamp1=1;
                     lamp2=1;
                     lamp3=0;
@@ -145,6 +193,25 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     lamp1=1;
                     lamp2=1;
                     lamp3=0;
+=======
+                    lamp1 = 1;
+                    lamp2 = 1;
+                    lamp3 = 0;
+                    RefreshLamps();
+                } else if (lamp2 == 1 && lamp3 == 0 || aquariosList.get(userID).getLamps() == 2) {
+                    mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1 = 1;
+                    lamp2 = 0;
+                    lamp3 = 0;
+                    RefreshLamps();
+                } else if (lamp2 == 1 && lamp3 == 1 || aquariosList.get(userID).getLamps() == 2) {
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1 = 1;
+                    lamp2 = 1;
+                    lamp3 = 0;
+                    RefreshLamps();
+>>>>>>> Stashed changes
                 }
             }
         });
@@ -152,10 +219,11 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         mViewHolder.level3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(lamp3==0) {
+                if (lamp3 == 0 || aquariosList.get(userID).getLamps() == 3) {
                     mViewHolder.level1.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
                     mViewHolder.level2.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
                     mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_yellow_24dp);
+<<<<<<< Updated upstream
                     lamp1=1;
                     lamp2=1;
                     lamp3=1;
@@ -166,13 +234,27 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     lamp2=1;
                     lamp3=0;
 
+=======
+                    lamp1 = 1;
+                    lamp2 = 1;
+                    lamp3 = 1;
+                    RefreshLamps();
+                } else if (lamp3 == 1 || aquariosList.get(userID).getLamps() == 3) {
+                    mViewHolder.level3.setImageResource(R.drawable.ic_wb_incandescent_white_24dp);
+                    lamp1 = 1;
+                    lamp2 = 1;
+                    lamp3 = 0;
+                    RefreshLamps();
+>>>>>>> Stashed changes
                 }
             }
         });
-
     }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     private void GetValuesUser() {
         //Select * from Utilizadores
         myRef = FirebaseDatabase.getInstance().getReference("Utilizadores");
@@ -184,6 +266,100 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
         query.addListenerForSingleValueEvent(valueEventListenerUtilizador);
 
     }
+
+<<<<<<< Updated upstream
+
+    ValueEventListener valueEventListenerUtilizador = new ValueEventListener() {
+=======
+    private void RefreshLamps() {
+
+        if (lamp1 == 1) {
+           aquariosList.get(userID).setLamps(1);
+            FirebaseDatabase.getInstance().getReference("Aquarios/"+useremail+"/lamps").removeValue();
+            FirebaseDatabase.getInstance().getReference("Aquarios/"+useremail+"/lamps").setValue(1);
+        } else if (lamp2 == 1) {
+          aquariosList.get(userID).setLamps(2);
+            FirebaseDatabase.getInstance().getReference("Aquarios/"+useremail+"/lamps").removeValue();
+            FirebaseDatabase.getInstance().getReference("Aquarios/"+useremail+"/lamps").setValue(2);
+        } else if (lamp3 == 1) {
+           aquariosList.get(userID).setLamps(3);
+            FirebaseDatabase.getInstance().getReference("Aquarios/"+useremail+"/lamps").removeValue();
+            FirebaseDatabase.getInstance().getReference("Aquarios/"+useremail+"/lamps").setValue(3);
+        }
+        else {
+            aquariosList.get(userID).setLamps(0);
+            FirebaseDatabase.getInstance().getReference("Aquarios/"+useremail+"/lamps").removeValue();
+            FirebaseDatabase.getInstance().getReference("Aquarios/"+useremail+"/lamps").setValue(0);
+        }
+    }
+
+    private void GetValuesAquario() {
+        //Select * from Aquarios
+        myRef = FirebaseDatabase.getInstance().getReference("Aquarios");
+        //myRef.addListenerForSingleValueEvent();
+
+        useremail = useremail.replace("@", "");
+        useremail = useremail.replace(".", "");
+
+        //SELECT * FROM WHERE email= currentUser
+        Query query = FirebaseDatabase.getInstance().getReference("Aquarios")
+                .orderByChild("email")
+                .equalTo(useremail);
+        query.addListenerForSingleValueEvent(valueEventListener);
+
+    }
+
+    ValueEventListener valueEventListener = new ValueEventListener() {
+>>>>>>> Stashed changes
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            aquariosList.clear();
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+<<<<<<< Updated upstream
+                    Utilizador utilizador = snapshot.getValue(Utilizador.class);
+                    utilizadorList.add(utilizador);
+                    /*try {*/
+                        mViewHolder.nav_nome.setText(String.valueOf(utilizador.getNome()));
+                        mViewHolder.nav_email.setText(String.valueOf(utilizador.getEmail()));
+                    /*} catch (Exception ec) {
+                    }*/
+=======
+                    Aquarios aquarios = snapshot.getValue(Aquarios.class);
+                    aquariosList.add(aquarios);
+
+                    Integer temp = GetValues();
+
+                    if (aquariosList.get(temp).getLamps() == 1) {
+                        lamp1 = 1;
+                        lamp2 = 0;
+                        lamp3 = 0;
+                    }
+                    else if(aquariosList.get(temp).getLamps() == 2){
+                        lamp1 = 1;
+                        lamp2 = 1;
+                        lamp3 = 0;
+                    }
+                    else if(aquariosList.get(temp).getLamps() == 3){
+                        lamp1 = 1;
+                        lamp2 = 1;
+                        lamp3 = 1;
+                    }
+                    else{
+                        lamp1 = 0;
+                        lamp2 = 0;
+                        lamp3 = 0;
+                    }
+>>>>>>> Stashed changes
+                }
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
 
 
     ValueEventListener valueEventListenerUtilizador = new ValueEventListener() {
@@ -198,10 +374,12 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
                     Utilizador utilizador = snapshot.getValue(Utilizador.class);
                     utilizadorList.add(utilizador);
                     /*try {*/
-                        mViewHolder.nav_nome.setText(String.valueOf(utilizador.getNome()));
-                        mViewHolder.nav_email.setText(String.valueOf(utilizador.getEmail()));
+                    mViewHolder.nav_nome.setText(String.valueOf(utilizador.getNome()));
+                    mViewHolder.nav_email.setText(String.valueOf(utilizador.getEmail()));
                     /*} catch (Exception ec) {
                     }*/
+
+
                 }
             }
 
@@ -251,12 +429,20 @@ public class definicoes_luzActivity extends AppCompatActivity implements Navigat
     private class ViewHolder {
 
 
+<<<<<<< Updated upstream
        TextView nav_nome;
        TextView nav_email;
        ImageView level1;
        ImageView level2;
        ImageView level3;
        Button btnautomatico;
+=======
+        TextView nav_nome;
+        TextView nav_email;
+        ImageView level1;
+        ImageView level2;
+        ImageView level3;
+>>>>>>> Stashed changes
 
     }
 
