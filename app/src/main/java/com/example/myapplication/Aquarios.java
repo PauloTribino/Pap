@@ -13,7 +13,7 @@ public class Aquarios {
         this.temp = temp;
     }
 
-    public Aquarios() {
+    public Aquarios(){
         email = "";
         ph = 0.0f;
         temp = 0.0f;
