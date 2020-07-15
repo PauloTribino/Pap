@@ -120,9 +120,17 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                     Aquarios aquarios = snapshot.getValue(Aquarios.class);
                     aquariosList.add(aquarios);
 
+<<<<<<< Updated upstream
                     mViewHolder.phvalue.setText(String.valueOf((Math.round(aquarios.getPh())*10) / 10));
                     mViewHolder.tempvalue.setText(String.valueOf((Math.round(aquarios.getTemp())*10)/10) + "ºC");
                     mViewHolder.luzvalue.setText(String.valueOf(3));
+=======
+                   Integer temp = GetValues();
+
+                    mViewHolder.phvalue.setText(String.valueOf( (double) Math.round(aquariosList.get(temp).getPh() * 100) / 100));
+                    mViewHolder.tempvalue.setText(String.valueOf(Math.round(aquariosList.get(temp).getTemp()) +  "ºC"));
+                    mViewHolder.luzvalue.setText(String.valueOf(aquariosList.get(temp).getLamps()));
+>>>>>>> Stashed changes
                     mViewHolder.tpavalue.setText(String.valueOf(10));
                 }
             }
@@ -162,6 +170,16 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         }
     };
 
+    private int GetValues(){
+        Integer temp = 0;
+
+        for (int i = 0; i < aquariosList.size(); i++) {
+            if (aquariosList.get(i).getEmail() == useremail)
+                temp = i;
+        }
+
+        return temp;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
