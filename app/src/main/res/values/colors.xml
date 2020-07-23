@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorRadioBlue">#0582ff</color>
+    <color name="colorRadioRed">#d61200</color>
+    <color name="colorRadioGreen">#00d904</color>
+    <color name="colorRadioWhite">#ffffff</color>
 </resources>

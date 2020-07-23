@@ -9,8 +9,10 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
@@ -23,7 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class InicioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,12 +41,13 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
     private List<Aquarios> aquariosList;
     private List<Utilizador> utilizadorList;
     private String useremail = "";
+    private int datetpa = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
-
+        getWindow().setStatusBarColor(Color.BLACK);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -130,13 +135,20 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                     aquariosList.add(aquarios);
 
                     mViewHolder.phvalue.setText(String.valueOf( (double) Math.round(aquarios.getPh() * 100) / 100));
-                    mViewHolder.tempvalue.setText(String.valueOf(Math.round(aquarios.getTemp()) +  "ºC"));
-                    mViewHolder.luzvalue.setText(String.valueOf(aquarios.getLamps()));
-                    mViewHolder.tpavalue.setText(String.valueOf(10));
+                    mViewHolder.tempvalue.setText(String.valueOf( (double) Math.round(aquarios.getTemp() * 100) / 100) +  "ºC");
+                    mViewHolder.luzvalue.setText(String.valueOf(aquarios.getBrightness()) + "%");
+                    aquarios.getLampColor();
+                    aquarios.getLampLevel();
+                    aquarios.getLightauto();
+                    aquarios.getMaxtemp();
+                    aquarios.getStarttpa();
+                    aquarios.getDias();
+                    datetpa = aquarios.getDatafinaltpa();
+                    mViewHolder.tpavalue.setText(String.valueOf(startTime()));
+
                 }
             }
         }
-
 
 
         @Override
@@ -144,6 +156,14 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
 
         }
     };
+
+    private int startTime(){
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+
+        int data = calendar.get(Calendar.DATE);
+
+        return datetpa - data;
+    }
 
     ValueEventListener valueEventListenerUtilizador = new ValueEventListener() {
         @Override
@@ -171,7 +191,6 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         }
     };
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mToggle.onOptionsItemSelected(item)) {
@@ -190,6 +209,22 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
+
+    public void onClickIluminacao(View v){
+        Intent i = new Intent(InicioActivity.this, definicoes_luzActivity.class);
+        startActivityForResult(i, 1);
+    }
+
+    public void onClickTpa(View v){
+        Intent i = new Intent(InicioActivity.this, definicoes_tpaActivity.class);
+        startActivityForResult(i, 1);
+    }
+
+    public void onClickTemp(View v){
+        Intent i = new Intent(InicioActivity.this, definicoes_tempActivity.class);
+        startActivityForResult(i, 1);
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
@@ -199,7 +234,16 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
         else if (id == R.id.settings_light) {
             Intent i = new Intent(InicioActivity.this, definicoes_luzActivity.class);
             startActivityForResult(i, 1);
-        } else if (id == R.id.sair) {
+        }
+        else if(id == R.id.settings_tpa){
+                Intent i = new Intent(InicioActivity.this, definicoes_tpaActivity.class);
+                startActivityForResult(i, 1);
+            }
+            else if(id == R.id.settings_temp){
+                Intent i = new Intent(InicioActivity.this, definicoes_tempActivity.class);
+                startActivityForResult(i, 1);
+            }
+        else if (id == R.id.sair) {
             setResult(0);
             Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
             finish();

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,7 @@ public class RegistoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registo);
-
+        getWindow().setStatusBarColor(Color.BLACK);
         mViewHolder.et_email = findViewById(R.id.txt_email);
         mViewHolder.et_nome =  findViewById(R.id.txt_nome);
         mViewHolder.et_password =  findViewById(R.id.txt_password);
